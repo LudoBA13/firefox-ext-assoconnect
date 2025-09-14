@@ -45,10 +45,10 @@
 		},
 		{
 			"matches": [
-				"https://ba13-bouches-du-rhone.assoconnect.com/structures/*"
+				"https://ba13-bouches-du-rhone.assoconnect.com/structures/edit/*"
 			],
 			"js": [
-				"structures.js"
+				"structures_edit.js"
 			]
 		}
 	],
