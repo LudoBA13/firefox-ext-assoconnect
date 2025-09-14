@@ -1,0 +1,64 @@
+{
+	"manifest_version": 3,
+	"name": "Assistant d'utilisation AssoConnect",
+	"version": "0.1.1",
+	"description": "Assiste à l'utilisation de AssoConnect.",
+	"author": "Ludovic ARNAUD",
+	"developer": {
+		"name": "Ludovic ARNAUD"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://ba13-bouches-du-rhone.assoconnect.com/*"
+			],
+			"css": [
+				"style.css"
+			],
+			"js": [
+				"content.js"
+			]
+		},
+		{
+			"matches": [
+				"https://ba13-bouches-du-rhone.assoconnect.com/contacts/edit/*"
+			],
+			"js": [
+				"contacts_edit.js"
+			]
+		},
+		{
+			"matches": [
+				"https://ba13-bouches-du-rhone.assoconnect.com/organization/contacts/create/*"
+			],
+			"js": [
+				"contacts_create.js"
+			]
+		},
+		{
+			"matches": [
+				"https://ba13-bouches-du-rhone.assoconnect.com/organization/structures/create/*"
+			],
+			"js": [
+				"structures_create.js"
+			]
+		},
+		{
+			"matches": [
+				"https://ba13-bouches-du-rhone.assoconnect.com/structures/*"
+			],
+			"js": [
+				"structures.js"
+			]
+		}
+	],
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "@assistant-assoconnect.ludo-ba13",
+			"update_url": "https://ludoba13.github.io/",
+			"data_collection_permissions": {
+				"required": ["none"]
+			}
+		}
+	}
+}
