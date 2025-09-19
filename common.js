@@ -2,7 +2,7 @@ const nsPrefix = 'ludoba13';
 
 function autoCheck(checkboxId)
 {
-	const checkbox = document.getElementById('BuyPackerUserUserInfos175732_427291');
+	const checkbox = document.getElementById(checkboxId);
 	if (checkbox)
 	{
 		checkbox.checked = true;
@@ -18,8 +18,7 @@ function autoSelect(selectorId, optionValue)
 	}
 }
 
-
-function createCustomField(storageId, paramId, labelText)
+function createCustomTextField(storageId, paramId, labelText)
 {
 	const storageInput   = getStorageInput(storageId);
 	const storageWrapper = getElementById(`BuyPackerUserUserInfos${storageId}Wrapper`);
@@ -65,7 +64,7 @@ function onCustomInputChange(e)
 	const storageInput = getStorageInput(storageId);
 	if (!storageInput)
 	{
-		console.log(`Impossible de mettre à jour "${paramId}"`);
+		console.log('Impossible de mettre à jour "%s"', paramId);
 		return;
 	}
 
@@ -86,7 +85,7 @@ function getStorageInput(storageId)
 	const storageInput = getElementById('BuyPackerUserUserInfos' + storageId);
 	if (!storageInput)
 	{
-		console.log(`Impossible de mettre à jour "${paramId}"`);
+		console.log('Impossible de mettre à jour "%s"', paramId);
 	}
 
 	return storageInput;

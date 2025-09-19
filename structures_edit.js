@@ -1,1 +1,1 @@
-createCustomField(152755, 'ud', 'UD');
+createCustomTextField(152755, 'ud', 'UD');
