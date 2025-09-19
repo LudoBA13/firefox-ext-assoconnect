@@ -1,13 +1,3 @@
-function getElementById(id)
-{
-	const element = document.getElementById(id);
-	if (!element)
-	{
-		console.debug('Cannot find element %s', '#' + id);
-	}
-
-	return element;
-}
 
 function copyStructureRelation()
 {
