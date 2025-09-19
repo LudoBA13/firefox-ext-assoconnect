@@ -75,6 +75,17 @@ function createPlanningInput(storageId, paramId, labelText)
 	input.dataset.storageId = storageId;
 	input.disabled = 'disabled';
 	input.type = 'text';
+	input.placeholder = 'Cr\xE9er un planning';
+	input.classList.add('planning');
+
+	input.addEventListener('click', (e) =>
+	{
+		if (e.target.value === '')
+		{
+			e.target.value = '1LuMdSe';
+			e.target.dispatchEvent(new Event('change', { bubbles: true }));
+		}
+	});
 
 	const m = getParamRegexp(paramId).exec(storageInput.value);
 	if (m)

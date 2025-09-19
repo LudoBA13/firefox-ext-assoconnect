@@ -31,3 +31,12 @@
 	background-color: #f00;
 	color:            #fff;
 }
+.ludoba13 input.planning::placeholder
+{
+	color: #000;
+	text-align: center;
+}
+.ludoba13 input.planning:placeholder-shown
+{
+	opacity: 1;
+}
