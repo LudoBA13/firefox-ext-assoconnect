@@ -2,3 +2,32 @@
 {
 	box-shadow: #ff00ff80 0 0 4px 4px;
 }
+
+.ludoba13-planning-row > select
+{
+	width: unset;
+}
+
+.ludoba13-planning-row button
+{
+	border-radius: 100%;
+	border:        solid 1px transparent;
+	box-shadow:    0 1px 3px 0 #cacaca;
+	height:        32px;
+	margin:        0 4px;
+	transition:    all .2s linear;
+	width:         32px;
+}
+.ludoba13-planning-row:hover button.add
+{
+	background-color: #b3f8e6;
+}
+.ludoba13-planning-row:hover button[data-state="edit"]
+{
+	background-color: #bbeeff;
+}
+.ludoba13-planning-row button.remove:hover
+{
+	background-color: #f00;
+	color:            #fff;
+}

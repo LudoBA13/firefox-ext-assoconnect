@@ -25,7 +25,6 @@
 				"https://ba13-bouches-du-rhone.assoconnect.com/contacts/edit/*"
 			],
 			"js": [
-				"common.js",
 				"contacts_edit.js"
 			]
 		},
@@ -34,7 +33,6 @@
 				"https://ba13-bouches-du-rhone.assoconnect.com/organization/contacts/create/*"
 			],
 			"js": [
-				"common.js",
 				"contacts_create.js"
 			]
 		},
@@ -43,7 +41,6 @@
 				"https://ba13-bouches-du-rhone.assoconnect.com/organization/structures/create/*"
 			],
 			"js": [
-				"common.js",
 				"structures_create.js"
 			]
 		},
@@ -52,7 +49,6 @@
 				"https://ba13-bouches-du-rhone.assoconnect.com/structures/edit/*"
 			],
 			"js": [
-				"common.js",
 				"structures_edit.js"
 			]
 		}

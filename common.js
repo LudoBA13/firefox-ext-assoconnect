@@ -51,6 +51,228 @@ function createCustomTextField(storageId, paramId, labelText)
 	storageWrapper.before(div);
 }
 
+function createPlanningInput(storageId, paramId, labelText)
+{
+	const storageInput   = getStorageInput(storageId);
+	const storageWrapper = getElementById(`BuyPackerUserUserInfos${storageId}Wrapper`);
+	if (!storageWrapper)
+	{
+		return;
+	}
+
+	// The following is redundant and will be refactored later
+	const div   = document.createElement('div');
+	const label = div.appendChild(document.createElement('label'));
+	const input = div.appendChild(document.createElement('input'));
+	const id    = `${nsPrefix}_custom_${storageId}_${paramId}`;
+
+	div.classList.add(nsPrefix);
+
+	label.textContent = labelText;
+	label.setAttribute('for', id);
+	input.id = id;
+	input.dataset.paramId = paramId;
+	input.dataset.storageId = storageId;
+	input.disabled = 'disabled';
+	input.type = 'text';
+
+	const m = getParamRegexp(paramId).exec(storageInput.value);
+	if (m)
+	{
+		input.value = m[1];
+	}
+
+	const planningRegex = /[1234](?:Lu|Ma|Me|Je|Ve)(?:Md|Mf|Ap)(?:Fr|Se|Su)/g;
+	const matches = storageInput.value.match(planningRegex);
+
+	if (matches)
+	{
+		for (const planning of matches)
+		{
+			div.appendChild(createPlanningRow(planning, input));
+		}
+	}
+
+
+	input.addEventListener('change', onCustomInputChange);
+	storageWrapper.before(div);
+}
+
+function createPlanningRow(planning, input)
+{
+	const [, week, day, time, type] = /^([1234])(Lu|Ma|Me|Je|Ve)(Md|Mf|Ap)(Fr|Se|Su)$/.exec(planning);
+	const weeks = {
+		'1': "1\u1D49\u02B3",
+		'2': "2\u207F\u1D48",
+		'3': "3\u1D49",
+		'4': "4\u1D49"
+	};
+	const days = {
+		'Lu': 'lundi',
+		'Ma': 'mardi',
+		'Me': 'mercredi',
+		'Je': 'jeudi',
+		'Ve': 'vendredi'
+	};
+	const times = {
+		'Md': '8h30',
+		'Mf': '10h',
+		'Ap': '14h'
+	};
+	const types = {
+		'Fr': 'Frais',
+		'Se': 'Sec',
+		'Su': 'Surgelés'
+	};
+
+	const container = document.createElement('div');
+	container.classList.add(`${nsPrefix}-planning-row`);
+
+	const weekSelect = createPlanningSelect(weeks, week);
+	const daySelect  = createPlanningSelect(days,  day);
+	const timeSelect = createPlanningSelect(times, time);
+	const typeSelect = createPlanningSelect(types, type);
+
+	const addButton = document.createElement('button');
+	addButton.textContent = '+';
+	addButton.type = 'button';
+	addButton.classList.add('add');
+
+	addButton.addEventListener('click', (e) =>
+	{
+		const currentRow = e.target.parentNode;
+		const selects = currentRow.querySelectorAll('select');
+		let planningString = '';
+		for (const select of selects)
+		{
+			planningString += select.value;
+		}
+
+		const newRow = createPlanningRow(planningString, input);
+		currentRow.after(newRow);
+	});
+
+	const editButton = document.createElement('button');
+	editButton.textContent = '\u270F\uFE0F';
+	editButton.type = 'button';
+	editButton.dataset.state = 'edit';
+
+	editButton.addEventListener('click', (e) =>
+	{
+		const button = e.target;
+		const row = button.parentNode;
+		const selects = row.querySelectorAll('select');
+
+		if (button.dataset.state === 'edit')
+		{
+			for (const select of selects)
+			{
+				select.disabled = false;
+			}
+			button.textContent = '\u2714\uFE0F';
+			button.dataset.state = 'done';
+		}
+		else
+		{
+			for (const select of selects)
+			{
+				select.disabled = true;
+			}
+			button.textContent = '\u270F\uFE0F';
+			button.dataset.state = 'edit';
+		}
+	});
+
+	const removeButton = document.createElement('button');
+	removeButton.textContent = '\u00D7';
+	removeButton.type = 'button';
+	removeButton.classList.add('remove');
+
+	removeButton.addEventListener('click', (e) =>
+	{
+		const row = e.target.parentNode;
+		const root = row.parentNode;
+		row.remove();
+
+		const anyRemainingSelect = root.querySelector('select');
+		if (anyRemainingSelect)
+		{
+			anyRemainingSelect.dispatchEvent(new Event('change', { bubbles: true }));
+		}
+		else
+		{
+			const input = root.querySelector('input');
+			if (input)
+			{
+				input.value = '';
+				input.dispatchEvent(new Event('change', { bubbles: true }));
+			}
+		}
+	});
+
+	container.appendChild(addButton);
+	container.appendChild(editButton);
+	container.appendChild(weekSelect);
+	container.appendChild(daySelect);
+	container.appendChild(timeSelect);
+	container.appendChild(typeSelect);
+	container.appendChild(removeButton);
+
+	function createPlanningSelect(options, selectedValue)
+	{
+		const select = createSelect(options, selectedValue);
+		select.disabled = 'disabled';
+		select.addEventListener('change', onPlanningChange);
+
+		return select;
+	}
+
+	function onPlanningChange(e)
+	{
+		const root      = e.target.parentNode.parentNode;
+		const input     = root.querySelector('input');
+		const plannings = [];
+
+		const rows = root.querySelectorAll(`.${nsPrefix}-planning-row`);
+		for (const row of rows)
+		{
+			const selects = row.querySelectorAll('select');
+			let planningString = '';
+			for (const select of selects)
+			{
+				planningString += select.value;
+			}
+			plannings.push(planningString);
+		}
+
+		const uniquePlannings = [...new Set(plannings)];
+		uniquePlannings.sort();
+		input.value = uniquePlannings.join('');
+
+		const changeEvent = new Event('change', { bubbles: true });
+		input.dispatchEvent(changeEvent);
+	}
+
+	return container;
+}
+
+function createSelect(options, selectedValue)
+{
+	const select = document.createElement('select');
+	for (const [value, text] of Object.entries(options))
+	{
+		const option = document.createElement('option');
+		option.value = value;
+		option.textContent = text;
+		if (value === selectedValue)
+		{
+			option.selected = true;
+		}
+		select.appendChild(option);
+	}
+	return select;
+}
+
 function getParamRegexp(paramId)
 {
 	return new RegExp('\\$' + paramId + ':([^$]*)\\$');
@@ -64,7 +286,7 @@ function onCustomInputChange(e)
 	const storageInput = getStorageInput(storageId);
 	if (!storageInput)
 	{
-		console.log('Impossible de mettre à jour "%s"', paramId);
+		console.error('Impossible de mettre à jour "%s"', paramId);
 		return;
 	}
 
