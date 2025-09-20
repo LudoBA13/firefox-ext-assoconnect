@@ -93,8 +93,8 @@ function createPlanningInput(storageId, paramId, labelText)
 		input.value = m[1];
 	}
 
-	const planningRegex = /[1234](?:Lu|Ma|Me|Je|Ve)(?:Md|Mf|Ap)(?:Fr|Se|Su)/g;
-	const matches = storageInput.value.match(planningRegex);
+	const planningRegexp = /[1234](?:Lu|Ma|Me|Je|Ve)(?:Md|Mf|Ap)(?:Fr|Se|Su)/g;
+	const matches = storageInput.value.match(planningRegexp);
 
 	if (matches)
 	{
@@ -244,6 +244,27 @@ function createPlanningRow(planning, input)
 		return select;
 	}
 
+	function encodePlanningOrder(planning)
+	{
+		const replacements = {
+			'Lu': '1', 'Ma': '2', 'Me': '3', 'Je': '4', 'Ve': '5', // days
+			'Md': '1', 'Mf': '2', 'Ap': '3',                       // time
+			'Se': '1', 'Fr': '2', 'Su': '3'                        // type
+		};
+
+		return planning.replace(
+			/[A-Z][a-z]/g,
+			(match) => replacements[match] || match
+		);
+	}
+
+	function comparePlannings(a, b)
+	{
+		const encodedA = encodePlanningOrder(a);
+		const encodedB = encodePlanningOrder(b);
+		return encodedA.localeCompare(encodedB);
+	}
+
 	function onPlanningChange(e)
 	{
 		const root      = e.target.parentNode.parentNode;
@@ -263,8 +284,7 @@ function createPlanningRow(planning, input)
 		}
 
 		const uniquePlannings = [...new Set(plannings)];
-		uniquePlannings.sort();
-		input.value = uniquePlannings.join('');
+		input.value = uniquePlannings.sort(comparePlannings).join('');
 
 		const changeEvent = new Event('change', { bubbles: true });
 		input.dispatchEvent(changeEvent);
