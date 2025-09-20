@@ -161,6 +161,12 @@ function createPlanningRow(planning, input)
 
 		const newRow = createPlanningRow(planningString, input);
 		currentRow.after(newRow);
+
+		const newRowEditButton = newRow.querySelector('button[data-state="edit"]');
+		if (newRowEditButton)
+		{
+			newRowEditButton.click();
+		}
 	});
 
 	const editButton = document.createElement('button');
@@ -180,7 +186,7 @@ function createPlanningRow(planning, input)
 			{
 				select.disabled = false;
 			}
-			button.textContent = '\u2714\uFE0F';
+			button.textContent = '\uD83D\uDD12';
 			button.dataset.state = 'done';
 		}
 		else
@@ -221,13 +227,13 @@ function createPlanningRow(planning, input)
 		}
 	});
 
-	container.appendChild(addButton);
-	container.appendChild(editButton);
+	container.appendChild(removeButton);
 	container.appendChild(weekSelect);
 	container.appendChild(daySelect);
 	container.appendChild(timeSelect);
 	container.appendChild(typeSelect);
-	container.appendChild(removeButton);
+	container.appendChild(editButton);
+	container.appendChild(addButton);
 
 	function createPlanningSelect(options, selectedValue)
 	{
