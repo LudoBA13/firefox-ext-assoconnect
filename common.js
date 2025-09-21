@@ -104,7 +104,6 @@ function createPlanningInput(storageId, paramId, labelText)
 		}
 	}
 
-
 	input.addEventListener('change', onCustomInputChange);
 	storageWrapper.before(div);
 }

@@ -1,6 +1,7 @@
 .ludoba13
 {
-	box-shadow: #ff00ff80 0 0 4px 4px;
+	background-color: #ff00ff10;
+	box-shadow:       #ff00ff20 0 0 12px 4px;
 }
 
 .ludoba13-planning-row > select
@@ -18,6 +19,10 @@
 	transition:    all .2s linear;
 	width:         32px;
 }
+.ludoba13-planning-row button:hover
+{
+	border-color: #00000020;
+}
 .ludoba13-planning-row:hover button.add
 {
 	background-color: #b3f8e6;
@@ -25,6 +30,11 @@
 .ludoba13-planning-row:hover button[data-state="edit"]
 {
 	background-color: #bbeeff;
+}
+.ludoba13-planning-row:active button[data-state="edit"]
+{
+	background-color: #aaddff;
+	border-color:     #88bbff;
 }
 .ludoba13-planning-row button.remove:hover
 {
