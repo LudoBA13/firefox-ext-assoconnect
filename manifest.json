@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Assistant d'utilisation AssoConnect",
-	"version": "0.2.6",
+	"version": "0.2.7",
 	"description": "Assiste à l'utilisation de AssoConnect.",
 	"author": "Ludovic ARNAUD",
 	"developer": {
@@ -50,6 +50,14 @@
 			],
 			"js": [
 				"structures_edit.js"
+			]
+		},
+		{
+			"matches": [
+				"https://ba13-bouches-du-rhone.assoconnect.com/organization/*"
+			],
+			"js": [
+				"organization.js"
 			]
 		}
 	],
