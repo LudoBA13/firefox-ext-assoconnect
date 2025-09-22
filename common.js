@@ -73,18 +73,22 @@ function createPlanningInput(storageId, paramId, labelText)
 	input.id = id;
 	input.dataset.paramId = paramId;
 	input.dataset.storageId = storageId;
-	input.disabled = 'disabled';
 	input.type = 'text';
 	input.placeholder = 'Cr\xE9er un planning';
 	input.classList.add('planning');
 
 	input.addEventListener('click', (e) =>
 	{
-		if (e.target.value === '')
+		if (e.target.value !== '')
 		{
-			e.target.value = '1LuMdSe';
-			e.target.dispatchEvent(new Event('change', { bubbles: true }));
+			return;
 		}
+		e.target.value = '1LuMdSe';
+		e.target.dispatchEvent(new Event('change', { bubbles: true }));
+
+		const newRow = createPlanningRow(e.target.value, input);
+		e.target.after(newRow);
+		newRow.querySelector('select')?.focus();
 	});
 
 	const m = getParamRegexp(paramId).exec(storageInput.value);
