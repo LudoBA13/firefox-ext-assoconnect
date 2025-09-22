@@ -5,6 +5,7 @@
 
 .ludoba13-planning-row > select
 {
+	font-size: 14px;
 	width: unset;
 }
 
@@ -25,15 +26,6 @@
 .ludoba13-planning-row:hover button.add
 {
 	background-color: #b3f8e6;
-}
-.ludoba13-planning-row:hover button[data-state="edit"]
-{
-	background-color: #bbeeff;
-}
-.ludoba13-planning-row:active button[data-state="edit"]
-{
-	background-color: #aaddff;
-	border-color:     #88bbff;
 }
 .ludoba13-planning-row button.remove:hover
 {

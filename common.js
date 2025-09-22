@@ -160,43 +160,6 @@ function createPlanningRow(planning, input)
 
 		const newRow = createPlanningRow(planningString, input);
 		currentRow.after(newRow);
-
-		const newRowEditButton = newRow.querySelector('button[data-state="edit"]');
-		if (newRowEditButton)
-		{
-			newRowEditButton.click();
-		}
-	});
-
-	const editButton = document.createElement('button');
-	editButton.textContent = '\u270F\uFE0F';
-	editButton.type = 'button';
-	editButton.dataset.state = 'edit';
-
-	editButton.addEventListener('click', (e) =>
-	{
-		const button = e.target;
-		const row = button.parentNode;
-		const selects = row.querySelectorAll('select');
-
-		if (button.dataset.state === 'edit')
-		{
-			for (const select of selects)
-			{
-				select.disabled = false;
-			}
-			button.textContent = '\uD83D\uDD12';
-			button.dataset.state = 'done';
-		}
-		else
-		{
-			for (const select of selects)
-			{
-				select.disabled = true;
-			}
-			button.textContent = '\u270F\uFE0F';
-			button.dataset.state = 'edit';
-		}
 	});
 
 	const removeButton = document.createElement('button');
@@ -231,13 +194,11 @@ function createPlanningRow(planning, input)
 	container.appendChild(daySelect);
 	container.appendChild(timeSelect);
 	container.appendChild(typeSelect);
-	container.appendChild(editButton);
 	container.appendChild(addButton);
 
 	function createPlanningSelect(options, selectedValue)
 	{
 		const select = createSelect(options, selectedValue);
-		select.disabled = 'disabled';
 		select.addEventListener('change', onPlanningChange);
 
 		return select;
