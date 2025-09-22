@@ -1,7 +1,6 @@
 .ludoba13
 {
-	background-color: #ff00ff10;
-	box-shadow:       #ff00ff20 0 0 12px 4px;
+	outline: dotted 3px #ff00fff0;
 }
 
 .ludoba13-planning-row > select
