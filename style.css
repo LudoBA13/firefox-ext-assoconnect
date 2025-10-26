@@ -1,14 +1,28 @@
+/* Disable transitions wherever possible */
+div
+{
+	transition-delay:    0s !important;
+	transition-duration: 0s !important;
+}
+/* Disable animations when toggling a search panel block */
+.searchPanelBlock.transition > .searchPanelBlockContent
+{
+	max-height: unset !important;
+}
+.searchPanelBlock:not(.transition):not(.open) > .searchPanelBlockContent
+{
+	max-height: 0 !important;
+}
+/* Custom elements */
 .ludoba13
 {
 	outline: dotted 3px #ff00fff0;
 }
-
 .ludoba13-planning-row > select
 {
 	font-size: 14px;
 	width: unset;
 }
-
 .ludoba13-planning-row button
 {
 	border-radius: 100%;
