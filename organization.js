@@ -7,8 +7,21 @@ document.getElementById('searchTableWrapper').before(button);
 button = document.createElement('button');
 button.addEventListener('click', e => autoSearch(39, 1130007));
 button.innerHTML = 'ACLAP';
-
 document.getElementById('searchTableWrapper').before(button);
+
+
+button = document.createElement('button');
+button.addEventListener('click', function (e)
+{
+	document.getElementById('searchTableHeaderCheckbox').click();
+	document.querySelector('.checkAllAlert').click();
+	document.getElementById('searchTableExportDropdownMenu0Item').click();
+	document.getElementById('sparkTableExportColumn_all').click();
+	document.querySelector('#sparkTemplateTableExportColumns + div .buttonOrange').click();
+});
+button.innerHTML = 'Export All';
+document.getElementById('searchTableWrapper').before(button);
+
 
 function autoSearch(infoId, valueId)
 {
