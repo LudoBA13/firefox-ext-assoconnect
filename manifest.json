@@ -22,38 +22,6 @@
 		},
 		{
 			"matches": [
-				"https://ba13-bouches-du-rhone.assoconnect.com/contacts/edit/*"
-			],
-			"js": [
-				"contacts_edit.js"
-			]
-		},
-		{
-			"matches": [
-				"https://ba13-bouches-du-rhone.assoconnect.com/organization/contacts/create/*"
-			],
-			"js": [
-				"contacts_create.js"
-			]
-		},
-		{
-			"matches": [
-				"https://ba13-bouches-du-rhone.assoconnect.com/organization/structures/create/*"
-			],
-			"js": [
-				"structures_create.js"
-			]
-		},
-		{
-			"matches": [
-				"https://ba13-bouches-du-rhone.assoconnect.com/structures/edit/*"
-			],
-			"js": [
-				"structures_edit.js"
-			]
-		},
-		{
-			"matches": [
 				"https://ba13-bouches-du-rhone.assoconnect.com/organization/*"
 			],
 			"js": [

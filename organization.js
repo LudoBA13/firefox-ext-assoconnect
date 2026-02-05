@@ -1,10 +1,10 @@
 let button = document.createElement('button');
-button.addEventListener('click', e => autoSearch(282, 455058));
-button.innerHTML = 'Entrepôt St-Andiol';
-
-document.getElementById('searchTableWrapper').before(button);
-
-button = document.createElement('button');
+//button.addEventListener('click', e => autoSearch(282, 455058));
+//button.innerHTML = 'Entrepôt St-Andiol';
+//
+//document.getElementById('searchTableWrapper').before(button);
+//
+//button = document.createElement('button');
 button.addEventListener('click', function (e)
 {
 	document.getElementById('searchTableHeaderCheckbox').click();
@@ -58,20 +58,20 @@ function toggleSearchItem(infoId)
 	document.getElementById(`info${infoId}_toggle_1Label`).click();
 }
 
-document.getElementById('searchQuery').addEventListener(
-	'keyup',
-	function (e)
-	{
-		if (/^[0-9]{7,}$/.test(e.target.value))
-		{
-			autoSearch(39, e.target.value);
-		}
-	},
-	{
-		capture: true,
-		passive: true
-	}
-);
+//document.getElementById('searchQuery').addEventListener(
+//	'keyup',
+//	function (e)
+//	{
+//		if (/^[0-9]{7,}$/.test(e.target.value))
+//		{
+//			autoSearch(39, e.target.value);
+//		}
+//	},
+//	{
+//		capture: true,
+//		passive: true
+//	}
+//);
 
 function autoSearch(infoId, valueId)
 {
