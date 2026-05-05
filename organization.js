@@ -5,16 +5,31 @@ let button = document.createElement('button');
 //document.getElementById('searchTableWrapper').before(button);
 //
 //button = document.createElement('button');
+
+function ensureChecked(selector)
+{
+	const el = document.querySelector(selector);
+	if (el && !el.checked)
+	{
+		el.click();
+	}
+	return el;
+}
 button.addEventListener('click', function (e)
 {
-	document.getElementById('searchTableHeaderCheckbox').click();
-	document.querySelector('.checkAllAlert')?.click();
-	document.getElementById('searchTableExportDropdownMenu0Item').click();
-	document.getElementById('sparkTableExportColumn_all').click();
-	document.querySelector('#sparkTemplateTableExportColumns + div .buttonOrange').click();
+	ensureChecked('#searchTableHeaderCheckbox');
+	ensureChecked('.checkAllAlert');
+	ensureChecked('#searchTableExportDropdownMenu0Item');
+	ensureChecked('#sparkTableExportColumn_all');
+	ensureChecked('#sparkTemplateTableExportColumns + div .buttonOrange');
 });
 button.innerHTML = 'Export All';
 document.getElementById('searchTableWrapper').before(button);
+
+window.addEventListener('load', () =>
+{
+	ensureChecked('#sparkTableExportColumn_all');
+});
 
 const root = document.getElementById('templatePage');
 function isSearchPanelOpen()
