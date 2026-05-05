@@ -18,18 +18,26 @@ function ensureChecked(selector)
 button.addEventListener('click', function (e)
 {
 	ensureChecked('#searchTableHeaderCheckbox');
-	ensureChecked('.checkAllAlert');
+	document.querySelector('.checkAllAlert')?.click();
 	ensureChecked('#searchTableExportDropdownMenu0Item');
-	ensureChecked('#sparkTableExportColumn_all');
-	ensureChecked('#sparkTemplateTableExportColumns + div .buttonOrange');
+	document.querySelector('#sparkTemplateTableExportColumns + div .buttonOrange').click();
 });
 button.innerHTML = 'Export All';
 document.getElementById('searchTableWrapper').before(button);
 
-window.addEventListener('load', () =>
+function runChecks()
 {
 	ensureChecked('#sparkTableExportColumn_all');
-});
+}
+
+if (document.readyState === 'complete')
+{
+	runChecks();
+}
+else
+{
+	window.addEventListener('load', runChecks);
+}
 
 const root = document.getElementById('templatePage');
 function isSearchPanelOpen()
