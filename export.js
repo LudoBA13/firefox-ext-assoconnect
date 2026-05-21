@@ -7,7 +7,7 @@ function ensureChecked(selector)
 	}
 }
 
-const button = document.createElement('button');
+const button = document.getElementById('searchTableExportButton').cloneNode(true);
 button.addEventListener('click', function ()
 {
 	ensureChecked('#searchTableHeaderCheckbox');
@@ -15,5 +15,5 @@ button.addEventListener('click', function ()
 	ensureChecked('#searchTableExportDropdownMenu0Item');
 	document.querySelector('#sparkTemplateTableExportColumns + div .buttonOrange').click();
 });
-button.innerHTML = 'Export All';
-document.getElementById('searchTableWrapper').before(button);
+button.querySelector('span').textContent = 'Tout exporter';
+document.getElementById('searchTableExportButton').after(button);
