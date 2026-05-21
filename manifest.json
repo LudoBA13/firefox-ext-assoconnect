@@ -14,10 +14,6 @@
 			],
 			"css": [
 				"style.css"
-			],
-			"js": [
-				"common.js",
-				"content.js"
 			]
 		},
 		{
@@ -25,7 +21,7 @@
 				"https://ba13-bouches-du-rhone.assoconnect.com/organization/*"
 			],
 			"js": [
-				"organization.js"
+				"export.js"
 			]
 		}
 	],
