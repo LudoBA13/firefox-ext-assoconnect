@@ -12,8 +12,8 @@ button.addEventListener('click', function ()
 {
 	ensureChecked('#searchTableHeaderCheckbox');
 	document.querySelector('.checkAllAlert')?.click();
-	ensureChecked('#searchTableExportDropdownMenu0Item');
-	document.querySelector('#sparkTemplateTableExportColumns + div .buttonOrange').click();
+	ensureChecked('#sparkTableExportColumn_all');
+	document.querySelector('#sparkTemplateTableExportColumns + div .buttonOrange');
 });
 button.querySelector('span').textContent = 'Tout exporter';
 document.getElementById('searchTableExportButton').after(button);
