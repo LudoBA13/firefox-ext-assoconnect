@@ -14,7 +14,7 @@ button.addEventListener('click', function ()
 {
 	ensureChecked('#searchTableHeaderCheckbox');
 	document.querySelector('.checkAllAlert')?.click();
-	originalButton.click();
+	document.querySelector('#searchTableExportButton').click();
 	ensureChecked('#sparkTableExportColumn_all');
 	document.querySelector('#sparkTemplateTableExportColumns + div .buttonOrange').click();
 });
