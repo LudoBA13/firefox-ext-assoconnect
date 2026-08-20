@@ -7,14 +7,16 @@ function ensureChecked(selector)
 	}
 }
 
-const button = document.getElementById('searchTableExportAllButton').cloneNode(true);
+const originalButton = document.getElementById('searchTableExportButton');
+const button = originalButton.cloneNode(true);
+button.id = 'searchTableExportAllButton';
 button.addEventListener('click', function ()
 {
 	ensureChecked('#searchTableHeaderCheckbox');
 	document.querySelector('.checkAllAlert')?.click();
-	document.querySelector('#searchTableExportAllButton').click();
+	originalButton.click();
 	ensureChecked('#sparkTableExportColumn_all');
 	document.querySelector('#sparkTemplateTableExportColumns + div .buttonOrange').click();
 });
 button.querySelector('span').textContent = 'Tout exporter';
-document.getElementById('searchTableExportAllButton').after(button);
+originalButton.after(button);
