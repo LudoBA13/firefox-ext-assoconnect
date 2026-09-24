@@ -10,22 +10,6 @@
 	"content_scripts": [
 		{
 			"matches": [
-				"https://*.assoconnect.com/*"
-			],
-			"css": [
-				"style.css"
-			]
-		},
-		{
-			"matches": [
-				"https://*.assoconnect.com/contacts/edit/*"
-			],
-			"js": [
-				"contacts_edit.js"
-			]
-		},
-		{
-			"matches": [
 				"https://*.assoconnect.com/organization/*"
 			],
 			"js": [
